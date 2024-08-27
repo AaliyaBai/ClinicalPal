@@ -1,8 +1,8 @@
 from openai import OpenAI
 import pandas as pd
 
-client = OpenAI(api_key="sk-proj-nnInnhApPqukMnsB2qRyT3BlbkFJaQNbYpCc2cwGpFKEqYqy")
-dataset_path = 'C:/Users/Aaliya/Downloads/archive(6)/healthcare_dataset-updated.csv'
+client = OpenAI(api_key="sk-proj-M2Fp47jj4w2LUU8P6s3KT3BlbkFJ7OJt5Y7WLYgINa9fNYQD")
+dataset_path = 'dataset/healthcare_dataset-updated.csv'
 
 
 class ClinicalChatbot:
@@ -22,8 +22,8 @@ class ClinicalChatbot:
                                           "as per their illness. You must never break this role and answer "
                                           "any irrelevant questions."
                                           "Here's the patient's details: " + patient_details + "; "
-                                                                                               "If the patient ask you to set a reminder for the next appointment, "
-                                                                                               "Reply with 0xREMIND_APPOINTMENT"}]
+                                          "If the patient ask you to set a reminder for the next appointment, "
+                                          "Reply with 0xREMIND_APPOINTMENT"}]
 
         return "Hi " + self.patient_name + ", How may I help you"
 
@@ -60,8 +60,8 @@ class ClinicalChatbot:
 
     # -----------------------------------------------------------------------------------------------------------------
 
-    def send_message(self, message):
-        self.messages.append({"role": "user", "content": message})
+    def send_prompt(self, prompt):
+        self.messages.append({"role": "user", "content": prompt})
 
         response = client.chat.completions.create(model="gpt-3.5-turbo", messages=self.messages)
         reply = response.choices[0].message.content.strip()

@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-client = OpenAI(api_key="sk-proj-nnInnhApPqukMnsB2qRyT3BlbkFJaQNbYpCc2cwGpFKEqYqy")
+client = OpenAI(api_key="sk-proj-M2Fp47jj4w2LUU8P6s3KT3BlbkFJ7OJt5Y7WLYgINa9fNYQD")
 
 patient_name = "Aaliya"
 patient_age = "28"
@@ -34,12 +34,13 @@ messages = [{"role": "system", "content": "You are a clinical chatbot designed t
 print("Hi " + patient_name + ", How may I help you")
 
 while True:
-    message = input()
+    prompt = input()
 
-    if message == 'quit()':
+    if prompt == 'quit()':
+        print(messages)
         break
 
-    messages.append({"role": "user", "content": message})
+    messages.append({"role": "user", "content": prompt})
 
     response = client.chat.completions.create(model="gpt-3.5-turbo", messages=messages)
     reply = response.choices[0].message.content.strip()

@@ -42,13 +42,13 @@ class ClinicalChatbotApp(App):
         if message:
             self.add_message("You: " + message, False)
             self.text_input.text = ''
-            reply = self.chatbot.send_message(message)
+            reply = self.chatbot.send_prompt(message)
             self.add_message("Bot: " + reply, True)
 
     def add_message(self, message, is_bot):
-        color = (0, 0, 1, 1)
+        color = (0, 0, 1, 1) # Blue
         if is_bot:
-            color = (0, 1, 0, 1)
+            color = (0, 1, 0, 1) # Green
         r, g, b, a = color
         color_hex = f"{int(r * 255):02x}{int(g * 255):02x}{int(b * 255):02x}{int(a * 255):02x}"
         message_label = Label(
